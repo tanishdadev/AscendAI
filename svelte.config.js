@@ -1,13 +1,12 @@
 import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/kit/vite';
-
-const dev = process.env.NODE_ENV === 'development';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 export default {
+  preprocess: vitePreprocess(),
   kit: {
     adapter: adapter(),
     paths: {
-      base: dev ? '' : '/AscendAI' // this is correct for your repo
+      base: process.env.NODE_ENV === 'development' ? '' : '/AscendAI'
     }
   }
 };
